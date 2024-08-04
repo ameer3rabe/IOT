@@ -7,8 +7,9 @@ int lastVal;
 unsigned long pressStartTime;
 unsigned long pressTime;
 bool buttonPressed = false;
-unsigned long shortestPressTime = 500;
+unsigned long shortestPressTime = 2000000000;
 const unsigned long debounceDelay = 50;
+const unsigned long ledOnDuration = 2000;
 
 void setup() {
   Serial.begin(9600);
@@ -46,8 +47,12 @@ void loop() {
       digitalWrite(pinLed_B, LOW);
       Serial.println("LED Color: Orange");
     }
+    delay(ledOnDuration);
+
+    digitalWrite(pinLed_R, LOW); 
+    digitalWrite(pinLed_G, LOW);
+    digitalWrite(pinLed_B, LOW);
     Serial.println("Button Press Ended");
   }
-Serial.println(shortestPressTime);
   lastVal = val;
 }
