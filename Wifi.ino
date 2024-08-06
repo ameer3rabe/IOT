@@ -44,28 +44,28 @@ void handleNotFound(){
 void handleRoot() {
   String html = "<html><body><h1>Button Clicks</h1><table border='1'>";
   html += "<tr><th>Press Timeingg</th><th>Improved/Not</th></tr>";
-  
+
   for (int i = 0; i < pressCount; i++) {
     html += "<tr>";
     html += "<td>" + String(pressDurations[i]) + "</td>";
     html += "<td>" + String(isImprovement[i] ? "Yes" : "No") + "</td>";
     html += "</tr>";
   }
-  
+
   html += "</table></body></html>";
   server.send(200, "text/html", html);
 }
-i
+
 
 void addPressEntry(unsigned long pressTime) {
   bool improvement = pressTime < overallBestTime;
   overallBestTime = min(overallBestTime, pressTime);
-  
+
   for (int i = maxPresses - 1; i > 0; i--) {
     pressDurations[i] = pressDurations[i - 1];
     isImprovement[i] = isImprovement[i - 1];
   }
-  
+
   pressDurations[0] = pressTime;
   isImprovement[0] = improvement;
   pressCount = min(pressCount + 1, maxPresses);

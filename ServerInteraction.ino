@@ -70,4 +70,4 @@ String getShortestPressTimeFromServer() {
   }
 
   return response;
-}
+} 

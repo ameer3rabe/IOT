@@ -32,7 +32,7 @@ void btn_loop() {
     buttonPressed = false;
     Serial.print("Press Time: ");
     Serial.println(pressTime);
-
+    addPressEntry(pressTime);
     String currentShortestTimeStr = getShortestPressTimeFromServer();
     unsigned long currentShortestTime = currentShortestTimeStr.toInt();
 
@@ -42,7 +42,7 @@ void btn_loop() {
         digitalWrite(pinLed_G, HIGH);
         digitalWrite(pinLed_B, HIGH);
         Serial.println("LED Color: Turquoise");
-     
+
     } else {
       digitalWrite(pinLed_R, HIGH);
       digitalWrite(pinLed_G, HIGH);
@@ -57,4 +57,4 @@ void btn_loop() {
     Serial.println("Button Press Ended");
   }
   lastVal = val;
-}
+} 
