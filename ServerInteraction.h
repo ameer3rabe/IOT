@@ -1,72 +1,74 @@
-#include <ESP8266WiFi.h>
-#include <WiFiClient.h>
-#include <ESP8266HTTPClient.h>
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx NOT NEEDED IT CHANGED TO SERVERINTERACTION.INO XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-const char* ssid = "Ameer";
-const char* pswd = "0522485513";
-const int deviceId = 1121;
-const int channel = 1;
+//#include <ESP8266WiFi.h>
+//#include <WiFiClient.h>
+//#include <ESP8266HTTPClient.h>
 
-WiFiClient client;
+//const char* ssid = "Ameer";
+//const char* pswd = "0522485513";
+//const int deviceId = 1121;
+//const int channel = 1;
 
-void wifiClient_Setup() {
-  Serial.println("wifiSetup");
-  WiFi.begin(ssid, pswd);
-  while (WiFi.status() != WL_CONNECTED) {
-    Serial.println("trying ...");
-    delay(100);
-  }
-  Serial.println("Connected to network");
-}
+//WiFiClient client;
 
-String sendPressTimeToServer(unsigned long pressTime) {
-  String serverUrl = "http://api.kits4.me/GEN/api.php?ACT=SET&DEV=" + String(deviceId) + "&CH=" + String(channel) + "&VAL=" + String(pressTime);
-  String response = "";
+//void wifiClient_Setup() {
+ // Serial.println("wifiSetup");
+ // WiFi.begin(ssid, pswd);
+ // while (WiFi.status() != WL_CONNECTED) {
+   // Serial.println("trying ...");
+   // delay(100);
+ // }
+//  Serial.println("Connected to network");
+//}
 
-  if (WiFi.status() == WL_CONNECTED) {
-    HTTPClient http;
-    http.begin(client, serverUrl);
+//String sendPressTimeToServer(unsigned long pressTime) {
+//  String serverUrl = "http://api.kits4.me/GEN/api.php?ACT=SET&DEV=" + String(deviceId) + "&CH=" + String(channel) + "&VAL=" + String(pressTime);
+ // String response = "";
 
-    int httpCode = http.GET();
+//  if (WiFi.status() == WL_CONNECTED) {
+  //  HTTPClient http;
+  //  http.begin(client, serverUrl);
 
-    if (httpCode > 0) {
-      response = http.getString();
-      Serial.println("Server Response: " + response);
-    } else {
-      Serial.println("HTTP GET failed");
-      response = "Error";
+//int httpCode = http.GET();
+//
+ //   if (httpCode > 0) {
+   //   response = http.getString();
+   //   Serial.println("Server Response: " + response);
+   //// } else {
+    //  Serial.println("HTTP GET failed");
+   //   response = "Error";
+  //  }
+  //  http.end();
+  //} else {
+  //  Serial.println("WiFi not connected");
+   // response = "Error";
+ // }
+
+ // return response;
+//}
+
+//String getShortestPressTimeFromServer() {
+//  String serverUrl = "http://api.kits4.me/GEN/api.php?ACT=GET&DEV=" + String(deviceId) + "&CH=" + String(channel);
+//  String response = "";
+
+ // if (WiFi.status() == WL_CONNECTED) {
+   // HTTPClient http;
+   // http.begin(client, serverUrl);
+
+  //  int httpCode = http.GET();
+
+   // if (httpCode > 0) {
+     // response = http.getString();
+     // Serial.println("Server Response: " + response);
+  //  } else {
+  //    Serial.println("HTTP GET failed");
+   //   response = "Error";
     }
-    http.end();
-  } else {
-    Serial.println("WiFi not connected");
-    response = "Error";
-  }
-
-  return response;
-}
-
-String getShortestPressTimeFromServer() {
-  String serverUrl = "http://api.kits4.me/GEN/api.php?ACT=GET&DEV=" + String(deviceId) + "&CH=" + String(channel);
-  String response = "";
-
-  if (WiFi.status() == WL_CONNECTED) {
-    HTTPClient http;
-    http.begin(client, serverUrl);
-
-    int httpCode = http.GET();
-
-    if (httpCode > 0) {
-      response = http.getString();
-      Serial.println("Server Response: " + response);
-    } else {
-      Serial.println("HTTP GET failed");
-      response = "Error";
-    }
-    http.end();
-  } else {
-    Serial.println("WiFi not connected");
-    response = "Error";
-  }
-
-  return response;
-}
+  //  http.end();
+ // } else {
+ //   Serial.println("WiFi not connected");
+ //   response = "Error";
+ // }
+//
+//  return response;
+//}
